@@ -45,16 +45,19 @@ The application features three synchronized musical layers, each mapped to a dis
 * Processes high-resolution NASA dataset videos frame by frame.
 * Resizes video frames into optimized grids, filters out background space noise using custom color-tone and peak-brightness detection algorithms, and outputs synchronized frequency arrays.
 * Utilizes dedicated Python processing scripts for each track to accommodate individual frame-resizing rules and grid-scanning logic efficiently.
+* Used AI for doing the math on frequency conversion, frame-resizing and grid-scanning, though the logic was written by me.
 
 ### Frontend Audio Engine (Tone.js & JavaScript)
 
 * Manages real-time web audio synthesis, dynamically matching the backend frequency sequences.
 * Synchronizes video playback seamlessly with the active audio scheduler.
+* Used AI ( Claude Opus 5.5 and Gemini 4 Argon ) for the frontend.
 
 ### UI/UX & Accessibility (HTML5, CSS3 / Glassmorphism)
 
 * Styled with a futuristic NASA dark-mode aesthetic featuring deep space blacks (`#0b0b14`), cyber-blue borders (`#00f0ff`), and warning amber highlights.
 * Fully optimized for accessibility (A11y) to support diverse users through high-contrast design, keyboard navigation, descriptive ARIA labels, and live telemetry text readouts.
+* * Used AI ( Claude Opus 5.5 and Gemini 4 Argon ) for the UI/UX design.
 
 ---
 
