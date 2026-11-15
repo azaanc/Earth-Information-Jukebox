@@ -73,4 +73,4 @@ Project Demonstration: link
 
 Local Testing: Highly recommended for zero-lag interaction.
 
-Vercel Deployment: link (**Not recommended**: May experience latency due to serverless cold starts)
+Vercel Deployment: https://earthinfojukebox.vercel.app/ (**Not recommended**: May experience latency on video due to serverless cold starts.)
