@@ -17,7 +17,7 @@ Because large video files are compressed for standard GitHub repository hosting 
 ---
 
 ## Demo link
-[Earth Information Jukebox]https://docs.google.com/videos/d/1cRUwEqoGdGpVirmF7p1qJ3HamDyTzK4Y2TWyCBzbQTw/play?usp=sharing
+https://docs.google.com/videos/d/1cRUwEqoGdGpVirmF7p1qJ3HamDyTzK4Y2TWyCBzbQTw/play?usp=sharing
 
 ## NASA Data Sources and Sonification Profiles
 
