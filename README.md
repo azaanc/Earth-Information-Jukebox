@@ -16,6 +16,9 @@ Because large video files are compressed for standard GitHub repository hosting 
 
 ---
 
+## Demo link
+[Earth Information Jukebox]https://docs.google.com/videos/d/1cRUwEqoGdGpVirmF7p1qJ3HamDyTzK4Y2TWyCBzbQTw/play?usp=sharing
+
 ## NASA Data Sources and Sonification Profiles
 
 The application features three synchronized musical layers, each mapped to a distinct planetary dataset:
@@ -69,7 +72,7 @@ While a live deployment is available via Vercel, free-tier server cold starts ca
 
 For the best evaluation experience, we recommend either watching the recorded demonstration or running the application locally using a live server:
 
-Project Demonstration: link
+Project Demonstration: https://docs.google.com/videos/d/1cRUwEqoGdGpVirmF7p1qJ3HamDyTzK4Y2TWyCBzbQTw/play?usp=sharing
 
 Local Testing: Highly recommended for zero-lag interaction.
 
