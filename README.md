@@ -63,6 +63,14 @@ The application features three synchronized musical layers, each mapped to a dis
 
 ## Deployment Note
 
-For evaluation and hackathon submission, complete screen-recording demonstrations of the application running live data were submitted directly to the judges.
+For evaluation and hackathon judging, comprehensive screen-recording demonstrations of the application running on live data have been provided.
 
-You can watch an example demonstration of a completed project submission in this [Team Nova Quest Space Apps Challenge Submission](https://www.youtube.com/watch?v=8BJ4OHqc7Wc) or run the website locally yourself using live server.
+While a live deployment is available via Vercel, free-tier server cold starts cause the video player to experience significant lag. Because this project was developed during a 48-hour hackathon, we utilized standard free-tier hosting, which unfortunately impacts media streaming performance.
+
+For the best evaluation experience, we recommend either watching the recorded demonstration or running the application locally using a live server:
+
+Project Demonstration: link
+
+Local Testing: Highly recommended for zero-lag interaction.
+
+Vercel Deployment: link (**Not recommended**: May experience latency due to serverless cold starts)
