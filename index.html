@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-band="cyan" data-level="standby">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Earth Info Jukebox: hear NASA Earth data</title>
+  <meta name="description" content="Watch NASA Earth data videos and hear them as geospatial spatialized sound. Built for low-vision and blind users too.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0B0D17">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="is-booting">
+  <a class="skip-link" href="#main">Skip to console</a>
+
+  <header id="mission-header" class="masthead">
+    <div class="masthead__id">
+      <h1 id="app-title" class="masthead__title">Earth Info Jukebox</h1>
+      <p id="app-tagline" class="masthead__tagline">Pick a NASA dataset. Watch it. Hear it in stereo.</p>
+    </div>
+    <div class="masthead__controls" role="group" aria-label="Audio guide controls">
+      <button type="button" id="btn-guide" class="btn btn--toggle" aria-pressed="false"
+              aria-label="Audio Guide: speak track descriptions, coordinates, and alerts" aria-describedby="guide-hint">
+        <span class="btn__lamp" aria-hidden="true"></span>
+        <span class="btn__text">Audio Guide <span id="guide-state">Off</span></span>
+      </button>
+      <button type="button" id="btn-describe" class="btn"
+              aria-label="Describe reading: speak the current frequency, coordinates, and status">Describe reading</button>
+      <p id="guide-hint" class="masthead__hint">Screen reader users: keep Audio Guide off.</p>
+    </div>
+  </header>
+
+  <main id="main" class="console" tabindex="-1">
+
+    <section id="panel-monitor" class="panel panel--monitor" aria-labelledby="monitor-title">
+      <div class="panel__head">
+        <h2 id="monitor-title" class="panel__title">Satellite feed</h2>
+        <p id="feed-meta" class="panel__meta">Standby</p>
+      </div>
+      <div class="monitor__screen">
+        <video id="video" muted playsinline preload="metadata" aria-describedby="track-desc"></video>
+        <p id="video-error" class="monitor__error" hidden></p>
+      </div>
+      <div class="transport" role="group" aria-label="Playback controls">
+        <button type="button" id="btn-play" class="btn btn--primary" data-state="paused" aria-label="Play">
+          <span id="play-icon" class="btn__icon" aria-hidden="true">▶</span>
+          <span id="play-text">Play</span>
+        </button>
+        <label class="sr-only" for="seek">Seek position in seconds</label>
+        <input type="range" id="seek" class="transport__seek" min="0" max="30" step="0.1" value="0"
+               aria-valuetext="0 seconds of 30">
+        <p id="time-readout" class="transport__time" translate="no">
+          <span id="t-elapsed">T+00:00</span> <span aria-hidden="true">/</span> <span id="t-total">00:30</span>
+        </p>
+      </div>
+    </section>
+
+    <section id="panel-telemetry" class="panel panel--telemetry" aria-labelledby="telemetry-title">
+      <div class="panel__head">
+        <h2 id="telemetry-title" class="panel__title">Telemetry</h2>
+        <p id="track-code" class="panel__meta">No track playing</p>
+      </div>
+      <p id="hz-readout" class="readout" aria-live="off" translate="no">
+        <span id="hz-value" class="readout__value">----</span><span class="readout__unit">Hz</span><span id="hz-note" class="readout__note">(--)</span>
+      </p>
+      <p id="status-badge" class="badge" data-level="standby" translate="no">
+        <span id="status-glyph" class="badge__glyph" aria-hidden="true">○</span>
+        <span id="status-text" class="badge__text">STANDBY</span>
+      </p>
+
+      <div class="telemetry-strip" translate="no">
+        <div class="telemetry-card">
+          <p class="telemetry-card__label">Target sector</p>
+          <p id="sector-region" class="telemetry-card__value">GLOBAL ATMOSPHERIC BACKGROUND</p>
+          <p id="sector-coords" class="telemetry-card__sub">LAT 0.0° EQ · LON 0.0° PM</p>
+          <div class="pan-meter" aria-label="Stereo audio pan position">
+            <span class="pan-meter__end" aria-hidden="true">L</span>
+            <div class="pan-meter__track" aria-hidden="true">
+              <span class="pan-meter__center"></span>
+              <span id="pan-thumb" class="pan-meter__thumb"></span>
+            </div>
+            <span class="pan-meter__end" aria-hidden="true">R</span>
+            <span id="pan-readout" class="pan-meter__val">C 0.00</span>
+          </div>
+        </div>
+
+        <div class="telemetry-card telemetry-card--split">
+          <div>
+            <p id="metric-label" class="telemetry-card__label">Scientific metric</p>
+            <p id="metric-value" class="telemetry-card__value">--</p>
+          </div>
+          <div>
+            <p class="telemetry-card__label">Frame &amp; pitch</p>
+            <p id="frame-readout" class="telemetry-card__value">FRAME 0 / 1800</p>
+            <p id="note-readout" class="telemetry-card__sub">STANDBY</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="hz-scale" class="hz-scale" aria-hidden="true">
+        <span id="hz-marker" class="hz-scale__marker"></span>
+        <span id="hz-tick-1" class="hz-scale__tick"></span>
+        <span id="hz-tick-2" class="hz-scale__tick"></span>
+      </div>
+      <ul id="band-legend" class="legend" aria-label="Frequency status bands">
+        <li class="legend__item" data-band="cyan"><span aria-hidden="true">●</span> Nominal</li>
+        <li class="legend__item" data-band="amber"><span aria-hidden="true">▲</span> Elevated</li>
+        <li class="legend__item" data-band="red"><span aria-hidden="true">■</span> Extreme</li>
+      </ul>
+
+      <div class="calibration" aria-labelledby="calibration-label">
+        <p id="calibration-label" class="calibration__label">Signal legend (audition current track synth)</p>
+        <div class="calibration__bar" role="group" aria-labelledby="calibration-label">
+          <button type="button" id="btn-test-nominal" class="btn btn--cal" data-band="cyan">
+            <span aria-hidden="true">●</span> Test Nominal
+          </button>
+          <button type="button" id="btn-test-elevated" class="btn btn--cal" data-band="amber">
+            <span aria-hidden="true">▲</span> Test Elevated
+          </button>
+          <button type="button" id="btn-test-critical" class="btn btn--cal" data-band="red">
+            <span aria-hidden="true">■</span> Test Critical
+          </button>
+        </div>
+      </div>
+
+      <dl class="datasheet">
+        <div class="datasheet__row"><dt>Dataset</dt><dd id="track-source">None selected</dd></div>
+        <div class="datasheet__row"><dt>What you see</dt><dd id="track-desc">Pick a track below.</dd></div>
+        <div class="datasheet__row"><dt>What you hear</dt><dd id="track-mapping">Each track turns data into pitch.</dd></div>
+      </dl>
+    </section>
+
+    <section id="panel-scope" class="panel panel--scope" aria-labelledby="scope-title">
+      <div class="panel__head">
+        <h2 id="scope-title" class="panel__title">Signal scope</h2>
+        <p id="audio-status" class="panel__meta">Audio idle</p>
+      </div>
+      <canvas id="scope-canvas" class="scope" width="960" height="240" aria-hidden="true"></canvas>
+      <p class="scope__note">A picture of the sound. Stereo panning tracks anomaly longitude; brightness shapes filter cutoff.</p>
+    </section>
+
+    <nav id="panel-jukebox" class="panel panel--jukebox" aria-labelledby="jukebox-title">
+      <div class="panel__head">
+        <h2 id="jukebox-title" class="panel__title">Jukebox</h2>
+        <p class="panel__meta">Press a track to play it</p>
+      </div>
+      <ul id="track-list" class="tracks"></ul>
+      <noscript><p class="noscript">This console needs JavaScript to play and sonify the videos.</p></noscript>
+    </nav>
+
+  </main>
+
+  <footer id="mission-footer" class="colophon">
+    <p>Data: NASA ODIAC, GISS GISTEMP, and VIIRS. Sound and hotspot coordinates are telemetry sonifications for exploration.</p>
+  </footer>
+
+  <div id="live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+  <script defer src="telemetry-data.js"></script>
+  <script defer src="app.js"></script>
+</body>
+</html>
