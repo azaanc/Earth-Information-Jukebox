@@ -2,6 +2,11 @@
 
 
 
+# IMPORTANT NOTE:
+If you want to have a look at the website, I have not deployed it. For submitting the website for the hackathon, I straight up sent a recording of how it works to the judges. But if you want to view it for yourself:
+You can clone this repository and check it out ( But **warning** the videos will lag and not look immersive because I had to compress the MP4 files to upload them on github )
+If you want the actual perfect experience ( as designed and meant to be ) then you can see below the links to download the NASA open source data video files. Download them and just put them in place of the three existing videos in the "Videos" folder.
+
 # NASA Open Source Data
 ## Track 1 ( CO2 Emission by humans ):
 - Data source: https://svs.gsfc.nasa.gov/5121/#media_group_312066
