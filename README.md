@@ -12,7 +12,7 @@ The **Earth Information Jukebox** is an audio-visual web application designed to
 
 ## Setup and Asset Management
 
-Because large video files are compressed for standard GitHub repository hosting to optimize upload limits, local playback quality can be affected. For the optimal user experience as originally designed, official high-resolution NASA video datasets can be downloaded directly from the links below and placed into the project's asset directory.
+Because large video files are compressed for standard GitHub repository hosting to optimize upload limits, local playback quality can be affected. For the optimal user experience as originally designed, official high-resolution NASA video datasets can be downloaded directly from the links below and placed into the project's "Videos" folder. (Delete the three existing videos and replace them with the videos downloaded from the NASA data sources below, if you want maximum quality) otherwise it is not necessary to do so.
 
 ---
 
@@ -62,4 +62,4 @@ The application features three synchronized musical layers, each mapped to a dis
 
 For evaluation and hackathon submission, complete screen-recording demonstrations of the application running live data were submitted directly to the judges.
 
-You can watch an example demonstration of a completed project submission in this [Team Nova Quest Space Apps Challenge Submission](https://www.youtube.com/watch?v=8BJ4OHqc7Wc).
+You can watch an example demonstration of a completed project submission in this [Team Nova Quest Space Apps Challenge Submission](https://www.youtube.com/watch?v=8BJ4OHqc7Wc) or run the website locally yourself using live server.
